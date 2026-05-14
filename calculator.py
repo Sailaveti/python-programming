@@ -1,66 +1,47 @@
-import tkinter as tk
+print("===== SIMPLE CLI CALCULATOR =====")
 
-# Function for button click
-def click(value):
-    current = entry.get()
-    entry.delete(0, tk.END)
-    entry.insert(0, current + str(value))
+# Taking input from user
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
 
-# Function to calculate result
-def calculate():
-    try:
-        result = eval(entry.get())
-        entry.delete(0, tk.END)
-        entry.insert(0, result)
-    except:
-        entry.delete(0, tk.END)
-        entry.insert(0, "Error")
+# Showing operations
+print("\nChoose Operation")
+print("1. Addition (+)")
+print("2. Subtraction (-)")
+print("3. Multiplication (*)")
+print("4. Division (/)")
+print("5. Modulus (%)")
+print("6. Power (^)")
 
-# Function to clear screen
-def clear():
-    entry.delete(0, tk.END)
+choice = input("Enter choice (1-6): ")
 
-# Main window
-root = tk.Tk()
-root.title("Calculator")
-root.geometry("320x400")
-root.config(bg="lightblue")
+# Performing operations using if-elif
+if choice == "1":
+    result = num1 + num2
+    print("Result =", result)
 
-# Entry box
-entry = tk.Entry(root, font=("Arial", 20), bd=5, relief=tk.RIDGE, justify="right")
-entry.pack(fill="both", ipadx=8, pady=10, padx=10)
+elif choice == "2":
+    result = num1 - num2
+    print("Result =", result)
 
-# Button frame
-frame = tk.Frame(root)
-frame.pack()
+elif choice == "3":
+    result = num1 * num2
+    print("Result =", result)
 
-# Buttons
-buttons = [
-    ['7', '8', '9', '/'],
-    ['4', '5', '6', '*'],
-    ['1', '2', '3', '-'],
-    ['0', '.', '=', '+']
-]
+elif choice == "4":
+    if num2 != 0:
+        result = num1 / num2
+        print("Result =", result)
+    else:
+        print("Error: Division by zero is not allowed")
 
-# Create buttons
-for row in buttons:
-    row_frame = tk.Frame(frame)
-    row_frame.pack(expand=True, fill="both")
+elif choice == "5":
+    result = num1 % num2
+    print("Result =", result)
 
-    for btn in row:
-        if btn == "=":
-            b = tk.Button(row_frame, text=btn, font=("Arial", 18),
-                          command=calculate, height=2, width=5)
-        else:
-            b = tk.Button(row_frame, text=btn, font=("Arial", 18),
-                          command=lambda x=btn: click(x), height=2, width=5)
+elif choice == "6":
+    result = num1 ** num2
+    print("Result =", result)
 
-        b.pack(side="left", expand=True, fill="both")
-
-# Clear button
-clear_btn = tk.Button(root, text="Clear", font=("Arial", 18),
-                      command=clear, bg="red", fg="white")
-clear_btn.pack(fill="both", padx=10, pady=10)
-
-# Run app
-root.mainloop()
+else:
+    print("Invalid choice")
