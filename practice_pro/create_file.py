@@ -1,4 +1,5 @@
-file = open("simple.txt", "r")
-content = file.read()
-print(content)
+file = open("simple.txt", "w")
+file.write("Hello, World!")
 file.close()
+
+print ("file is created successfully!")
